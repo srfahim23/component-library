@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #ffffff;
+      --muted: #a3a3a3;
+      --card-bg: #141414;
+      --card-border: #262626;
+      --accent: #00ff9d;
+      --accent-glow: #00ff9d33;
+      --success: #4ade80;
+      --error: #f87171;
+      --btn-bg: #00ff9d;
+      --btn-text: #000000;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 120px 0 100px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, var(--accent-glow), transparent);
+      pointer-events: none;
+    }
+
+    .hero p.subtitle {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      color: var(--muted);
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin: 1rem 0 0.5rem;
+      color: var(--fg);
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .feature-card .icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .project-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1.25rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .project-item .title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+      color: var(--fg);
+    }
+
+    .project-item .tech {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .project-item .status {
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .status.up { color: var(--success); }
+    .status.down { color: var(--error); }
+
+    /* Steps */
+    .steps {
+      background: #0f0f0f;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .step-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .step-card .number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0 auto 1.25rem;
+      color: var(--accent);
+    }
+
+    .step-card h3 {
+      color: var(--fg);
+      margin: 0.75rem 0;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--card-bg);
+      padding: 80px 0;
+    }
+
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--btn-text);
+      font-weight: 700;
+    }
+
+    .testimonial-quote {
+      font-size: 1.25rem;
+      font-style: italic;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+
+    .testimonial-author {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-role {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      font-size: 1.125rem;
+      cursor: pointer;
+      padding: 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--fg);
+    }
+
+    .faq-answer {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--muted);
+    }
+
+    .faq-answer.open {
+      max-height: 200px;
+      padding: 1rem;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .faq-question.active::after {
+      content: '−';
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to top, var(--accent-glow), transparent);
+      pointer-events: none;
+    }
+
+    .cta h2 {
+      margin-bottom: 2rem;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--card-bg);
+      padding: 40px 0 20px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-column h3 {
+      color: var(--fg);
+      margin-bottom: 1rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--accent);
+    }
+
+    .copyright {
+      margin-top: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 1.75rem;
+      }
+      .hero {
+        padding: 80px 0 60px;
+      }
+      .cta {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Take Control of Your Digital Assets wth Faysal Dev</h1>
+      <p class="subtitle">I offer a seamless, secure experience for managing your digital assets. Instant transactions, optimized fees, and premium design.</p>
+      <a href="#projects" class="btn">Get started now</a>
+      <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <span>They trust us</span>
+        <div style="display: flex; gap: 0.25rem; margin-left: 0.5rem;">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <span>4.9</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2>Why Choose Me?</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+        Benefits designed to provide a seamless, secure, and accessible experience for all users.
+      </p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">🔒</div>
+          <h3>Maximum Security</h3>
+          <p>Your assets are protected with cutting-edge security protocols.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">⚡</div>
+          <h3>Instant Transactions</h3>
+          <p>Execute your transactions in real-time, without delays.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">💰</div>
+          <h3>Optimized Fees</h3>
+          <p>Benefit from some of the lowest fees on the market.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🎨</div>
+          <h3>Premium Interface</h3>
+          <p>An elegant, intuitive design that’s easy to use, even for beginners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>All Cryptos, One Platform</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+        Buy, sell, and convert all major cryptocurrencies on a single platform. A seamless experience with no compromises.
+      </p>
+      <div class="projects-grid">
+        <div class="project-item">
+          <div class="title">Bitcoin</div>
+          <div class="tech">$94,595.33</div>
+          <div class="status up">+1.71%</div>
+        </div>
+        <div class="project-item">
+          <div class="title">Solana</div>
+          <div class="tech">$194.46</div>
+          <div class="status down">-0.65%</div>
+        </div>
+        <div class="project-item">
+          <div class="title">Dash</div>
+          <div class="tech">$24.68</div>
+          <div class="status up">+1.71%</div>
+        </div>
+        <div class="project-item">
+          <div class="title">XRP</div>
+          <div class="tech">$2.407</div>
+          <div class="status up">+1.66%</div>
+        </div>
+        <div class="project-item">
+          <div class="title">Ethereum</div>
+          <div class="tech">$2,609.21</div>
+          <div class="status up">+1.71%</div>
+        </div>
+        <div class="project-item">
+          <div class="title">Bitcoin</div>
+          <div class="tech">$94,595.33</div>
+          <div class="status up">+1.71%</div>
+        </div>
+        <div class="project-item">
+          <div class="title">Solana</div>
+          <div class="tech">$194.46</div>
+          <div class="status down">-0.65%</div>
+        </div>
+        <div class="project-item">
+          <div class="title">Dash</div>
+          <div class="tech">$24.68</div>
+          <div class="status up">+1.71%</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="#" style="color: var(--accent); text-decoration: none; font-weight: 600;">Buy crypto now →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="steps">
+    <div class="container">
+      <h2>How It Works</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+        A simple, fast, and secure platform to manage your cryptocurrencies in just a few steps.
+      </p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="number">1</div>
+          <h3>Create your account</h3>
+          <p>Sign up easily and secure your profile in just a few steps.</p>
+        </div>
+        <div class="step-card">
+          <div class="number">2</div>
+          <h3>Fund your wallet</h3>
+          <p>Deposit your cryptos or make a transfer to start trading.</p>
+        </div>
+        <div class="step-card">
+          <div class="number">3</div>
+          <h3>Buy, sell, or convert</h3>
+          <p>Enjoy the simplicity of a platform that makes every transaction seamless in real-time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>Trusted by Crypto Enthusiasts Worldwide</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+        Join a growing community of investors who choose me for its seamless experience, security, and premium design.
+      </p>
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="avatar">A</div>
+          <div>
+            <div class="testimonial-author">Alex M.</div>
+            <div class="testimonial-role">Blockchain Analyst at NovaChain</div>
+          </div>
+        </div>
+        <div class="testimonial-quote">
+          “Cryptix makes crypto trading effortless. Fast transactions, low fees, and a sleek interface—exactly what I needed.”
+        </div>
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+          <button style="background: none; border: none; color: var(--muted); cursor: pointer;">← Previous</button>
+          <span style="color: var(--muted);">1/3</span>
+          <button style="background: none; border: none; color: var(--muted); cursor: pointer;">Next →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Your Questions, Answered</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+        Find everything you need to know about my services, from security to supported assets.
+      </p>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-question">What is Cryptix?<span>+</span></div>
+          <div class="faq-answer">Cryptix is a modern cryptocurrency platform designed for seamless, secure, and efficient trading with an intuitive user interface.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is Cryptix secure?<span>+</span></div>
+          <div class="faq-answer">Yes. We implement cutting-edge security protocols including two-factor authentication, encrypted storage, and regular security audits.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Which cryptocurrencies are supported?<span>+</span></div>
+          <div class="faq-answer">We support all major cryptocurrencies including Bitcoin, Ethereum, Solana, Dash, XRP, and many more.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What are the fees for transactions?<span>+</span></div>
+          <div class="faq-answer">Our fees are among the lowest in the market, with most transactions costing less than 0.1%.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How fast are transactions?<span>+</span></div>
+          <div class="faq-answer">Transactions are processed in real-time, typically completing within seconds.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Do I need to verify my identity?<span>+</span></div>
+          <div class="faq-answer">Yes, we require identity verification for compliance with financial regulations and to ensure platform security.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can I access Cryptix on mobile?<span>+</span></div>
+          <div class="faq-answer">Yes, our platform is fully responsive and works seamlessly on all devices, including smartphones and tablets.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How can I contact support?<span>+</span></div>
+          <div class="faq-answer">You can reach our 24/7 support team via email, live chat, or through our help center.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to take control of your crypto?</h2>
+      <p>
+        Join thousands of users who trust me for secure, seamless, and efficient cryptocurrency transactions.
+      </p>
+      <a href="#" class="btn">Get started now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMTAgMTBoMi41di0yTDEwLjV2MmgteiIgc3R5bGU9ImZpbGw6IzAwZmY5ZCIvPjxwYXRoIGQ9Ik02IDJoMnYxMkg2VjIweiIgc3R5bGU9ImZpbGw6IzAwZmY5ZCIvPjxwYXRoIGQ9Ik0yIDEwaDJ2LTJIMnYyeiIgc3R5bGU9ImZpbGw6IzAwZmY5ZCIvPjxwYXRoIGQ9Ik0xMiAxMGgydjItMTJoLTJ2MnoiIHN0eWxlPSJmaWxsOiMwMGZmOWQiLz48L3N2Zz4=" alt="Logo" style="height: 24px; margin-bottom: 1rem;">
+          <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
+            Secure, fast, and seamless crypto trading. Cryptix makes digital assets effortless.
+          </p>
+        </div>
+        <div class="footer-column">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="#">Why Cryptix?</a></li>
+            <li><a href="#">Cryptos</a></li>
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Socials</h3>
+          <ul>
+            <li><a href="#">Twitter (X)</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        Created by Arthur in Framer
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach((question) => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+        
+        // Close all
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+        document.querySelectorAll('.faq-question span').forEach(s => s.textContent = '+');
+
+        if (!isOpen) {
+          answer.classList.add('open');
+          question.classList.add('active');
+          question.querySelector('span').textContent = '−';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

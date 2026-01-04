@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: #030712;
+    overflow-x: hidden;
+}
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.container {
+    max-width: 900px;
+    z-index: 10;
+}
+
+/* Background Blobs */
+.blob-1, .blob-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
+    filter: blur(50px);
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.blob-1 { top: -100px; left: -100px; animation: move 10s infinite alternate; }
+.blob-2 { bottom: -100px; right: -100px; animation: move 8s infinite alternate-reverse; }
+
+@keyframes move {
+    from { transform: translate(0, 0); }
+    to { transform: translate(100px, 50px); }
+}
+
+/* Content Styling */
+.badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 4rem;
+    margin: 20px 0;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.hero-btns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: #38bdf8;
+    color: #030712;
+    padding: 15px 35px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    transition: 0.3s;
+}
+
+.btn-secondary {
+    border: 1px solid #334155;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-primary:hover { transform: translateY(-5px); background: white; }
+.btn-secondary:hover { background: #1e293b; }
+
+/* Trust Icons */
+.hero-trust { margin-top: 60px; }
+.hero-trust p { font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+.brand-icons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    opacity: 0.5;
+    font-weight: 600;
+}

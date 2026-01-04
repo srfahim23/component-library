@@ -1,18 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.querySelector('.navbar');
+/* ===============================
+   Navbar Scroll Effect
+=============================== */
 
-    // Scroll Effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.modern-nav');
 
-    // Mobile Menu Toggle (Alert message for testing)
-    const hamburger = document.getElementById('hamburger');
-    hamburger.addEventListener('click', () => {
-        alert("Mobile menu clicked! You can toggle a sidebar here.");
-    });
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
 });

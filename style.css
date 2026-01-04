@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #0b1120;
+  color: #ffffff;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #9ca3af;
+}
+
+.components {
+  display: flex;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.components a {
+  padding: 16px 32px;
+  background: #1e293b;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.components a:hover {
+  background: #334155;
+  transform: translateY(-5px);
+}

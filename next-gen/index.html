@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faysal Sarker | Senior Frontend Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #00d1ff;
+            --bg-dark: #03030a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-white: rgba(255, 255, 255, 0.1);
+            --text-gray: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: #fff; overflow-x: hidden; line-height: 1.6; }
+
+        /* Background */
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--border-white);
+        }
+        .logo { font-weight: 700; letter-spacing: 3px; color: var(--primary); font-size: 1.2rem; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; opacity: 0.7; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+        /* General Section */
+        section { padding: 100px 8%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        h2.section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 200; margin-bottom: 60px; letter-spacing: 8px; text-transform: uppercase; text-align: left; position: relative;}
+        h2.section-title::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 2px; background: var(--primary); }
+        h2.section-title span { color: var(--primary); font-weight: 700; }
+
+        /* 1. Hero Section */
+        .hero { text-align: center; }
+        .hero h2 { color: var(--primary); letter-spacing: 12px; font-size: 0.9rem; margin-bottom: 25px; text-transform: uppercase; }
+        .hero h1 { font-size: clamp(3rem, 12vw, 7rem); font-weight: 700; line-height: 0.9; margin-bottom: 25px; letter-spacing: -2px; }
+        .hero p { color: var(--text-gray); max-width: 650px; margin: 0 auto; font-size: 1.2rem; }
+        .cta-btn { margin-top: 50px; padding: 18px 45px; background: transparent; border: 1px solid var(--primary); color: var(--primary); text-transform: uppercase; letter-spacing: 4px; cursor: pointer; transition: 0.4s; font-size: 11px; font-weight: bold; }
+        .cta-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 40px rgba(0, 209, 255, 0.4); transform: scale(1.05); }
+
+        /* 2. Experience (Rocket Trail Timeline) */
+        .timeline { position: relative; max-width: 1000px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 20px; top: 0; width: 1px; height: 100%; background: var(--border-white); }
+        .experience-card { background: var(--card-bg); padding: 35px; border-radius: 20px; border: 1px solid var(--border-white); margin-bottom: 30px; margin-left: 60px; position: relative; transition: 0.3s; }
+        .experience-card::before { content: ''; position: absolute; left: -46px; top: 40px; width: 12px; height: 12px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+        .experience-card:hover { border-color: var(--primary); background: rgba(0, 209, 255, 0.02); }
+
+        /* 3. Skills (Glass Bento) */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        .skill-card { background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-white); text-align: center; transition: 0.4s; font-size: 14px; letter-spacing: 1px; }
+        .skill-card:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .skill-card i { font-size: 2rem; margin-bottom: 10px; display: block; }
+
+        /* 4. Projects (3D Architecture) */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .project-card { 
+            background: var(--card-bg); border-radius: 20px; padding: 40px; 
+            border: 1px solid var(--border-white); transform-style: preserve-3d; transition: 0.2s ease-out;
+            cursor: pointer;
+        }
+        .project-card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
+        .project-card .tech-stack { font-size: 0.75rem; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .project-card p { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 25px; }
+
+        /* Achievements (Compact Glow) */
+        .achievements-grid { display: flex; flex-wrap: wrap; gap: 15px; }
+        .ach-tag { background: rgba(255,255,255,0.03); border: 1px solid var(--primary); padding: 10px 25px; border-radius: 50px; font-size: 13px; color: var(--primary); }
+
+        /* Responsive Fix */
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; }
+            section { padding: 80px 5%; }
+            .about-img { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <div class="logo">FAYSAL.<span style="color:#fff">ARCH</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Career</a>
+            <a href="#skills">Stack</a>
+            <a href="#projects">Architecture</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <h2>Engineering Performance</h2>
+        <h1>SYSTEMS THAT <br><span>EVOLVE.</span></h1>
+        <p>Senior Frontend & WordPress Architect. I specialize in building enterprise-grade web applications and high-conversion ecosystems.</p>
+        <div>
+            <button class="cta-btn" onclick="location.href='#projects'">View Case Studies</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">01. <span>Identity</span></h2>
+        <div class="about-container">
+            <div class="about-text" style="max-width: 800px;">
+                <p style="font-size: 1.4rem; font-weight: 300; color: #fff;">
+                    I am <span style="color:var(--primary)">Faysal Sarker</span>. I don't just write code; I design systems.
+                </p>
+                <p style="margin-top:20px; color: var(--text-gray);">
+                    With 5+ years in the industry, my work revolves around <b>React Scalability</b> and <b>Enterprise WordPress</b>. I bridge the gap between high-level design and robust, pixel-perfect technical implementation.
+                </p>
+                <div class="achievements-grid" style="margin-top: 30px;">
+                    <div class="ach-tag">Next.js 14 / App Router</div>
+                    <div class="ach-tag">Headless WP (GraphQL)</div>
+                    <div class="ach-tag">Performance Optimization</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">02. <span>Trajectory</span></h2>
+        <div class="timeline">
+            <div class="experience-card">
+                <h3 style="color: var(--primary);">Senior Frontend Developer — Shabip Stack</h3>
+                <p style="color: #fff; opacity: 0.6; font-size: 0.8rem; margin-bottom: 15px;">JAN 2022 — PRESENT</p>
+                <p>Leading frontend architecture for multi-tenant SaaS products. Reduced TTI (Time to Interactive) by 40% using Next.js server components and optimized asset pipelines.</p>
+            </div>
+            <div class="experience-card">
+                <h3 style="color: var(--primary);">Full-Stack Freelance Architect</h3>
+                <p style="color: #fff; opacity: 0.6; font-size: 0.8rem; margin-bottom: 15px;">2019 — 2022</p>
+                <p>Architected 50+ custom WordPress ecosystems. Specialized in ACF-driven high-end custom themes for international fintech and real estate brands.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">03. <span>Core Stack</span></h2>
+        <div class="skills-grid">
+            <div class="skill-card"><i class="fab fa-react" style="color:#61dbfb"></i>React / Next.js</div>
+            <div class="skill-card"><i class="fab fa-js" style="color:#f7df1e"></i>TypeScript</div>
+            <div class="skill-card"><i class="fab fa-wordpress" style="color:#21759b"></i>WordPress Core</div>
+            <div class="skill-card"><i class="fa fa-wind" style="color:#38b2ac"></i>Tailwind CSS</div>
+            <div class="skill-card"><i class="fa fa-database" style="color:#ff4154"></i>GraphQL / APIs</div>
+            <div class="skill-card"><i class="fab fa-figma" style="color:#a259ff"></i>Figma Architecture</div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">04. <span>Selected Works</span></h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="tech-stack">Next.js • Tailwind • Redux</div>
+                <h3>FinTech Hub</h3>
+                <p>A high-security financial dashboard with real-time data streaming and complex state management.</p>
+                <a href="#" class="cta-btn" style="padding: 10px 20px;">Review Code</a>
+            </div>
+            <div class="project-card">
+                <div class="tech-stack">WordPress • Headless • GraphQL</div>
+                <h3>Enterprise CMS</h3>
+                <p>Decoupled architecture for a news portal handling 1M+ monthly visitors with 100/100 Lighthouse score.</p>
+                <a href="#" class="cta-btn" style="padding: 10px 20px;">Review Architecture</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="text-align: center;">
+        <h2 class="section-title" style="text-align: center;">05. <span>Connect</span></h2>
+        <div class="contact-form glass" style="background: rgba(255,255,255,0.02); padding: 50px; border-radius: 30px; border: 1px solid var(--border-white);">
+            <p style="margin-bottom: 30px; color: var(--text-gray);">Interested in an Enterprise-grade solution? Let's initiate a technical audit.</p>
+            <button class="cta-btn" onclick="window.location.href='mailto:your-email@example.com'">Open Connection</button>
+            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 30px;">
+                <a href="#" style="color: var(--primary); font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                <a href="#" style="color: var(--primary); font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 50px; font-size: 10px; color: #444; letter-spacing: 3px; border-top: 1px solid var(--border-white);">
+        SYSTEM DESIGN BY FAYSAL SARKER &copy; 2026. ALL CORE PROTOCOLS ACTIVE.
+    </footer>
+
+    <script>
+        // Particles background
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80 },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 1.5 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00d1ff", "opacity": 0.05, "width": 1 },
+                "move": { "enable": true, "speed": 0.8 }
+            }
+        });
+
+        // Advanced 3D tilt
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (centerY - y) / 15;
+                const rotateY = (x - centerX) / 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+    </script>
+</body>
+</html>

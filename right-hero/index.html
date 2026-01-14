@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Stack Orbit</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<style>
+  :root {
+    --bg-color: #0f172a; /* ডার্ক থিম দিলে আইকনগুলো বেশি ফুটে ওঠে */
+    --orbit-speed: 25s;
+    --radius: 250px;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .main-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+  }
+
+  /* মাঝখানের ফোন/প্রোফাইল বক্স */
+  .center-card {
+    width: 180px;
+    height: 360px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    color: white;
+    text-align: center;
+  }
+
+  /* অরবিট রিং (হালকা গ্লোয়িং লাইন) */
+  .orbit-line {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* আইকন কন্টেইনার */
+  .tech-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* অ্যানিমেশন সেটআপ */
+    offset-path: circle(250px at center);
+    animation: 
+      orbit-move var(--orbit-speed) linear infinite,
+      float-y 3s ease-in-out infinite;
+  }
+
+  /* আইকনগুলোর অরিজিনাল কালার হোভারে দেখাবে */
+  .tech-icon:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.2);
+    cursor: pointer;
+    animation-play-state: paused;
+  }
+
+  /* মেইন ৩ডি অরবিট অ্যানিমেশন */
+  @keyframes orbit-move {
+    0% { offset-distance: 0%; z-index: 20; opacity: 1; filter: blur(0px); }
+    25% { z-index: 20; }
+    50% { opacity: 0.5; filter: blur(2px); transform: scale(0.8); z-index: 5; }
+    75% { z-index: 5; }
+    100% { offset-distance: 100%; z-index: 20; opacity: 1; filter: blur(0px); }
+  }
+
+  /* হালকা আপ-ডাউন এফেক্ট */
+  @keyframes float-y {
+    0%, 100% { margin-top: 0px; }
+    50% { margin-top: -15px; }
+  }
+
+  /* আইকনগুলোর টাইম গ্যাপ সেট করা */
+  .tech-icon:nth-child(3) { animation-delay: 0s; }
+  .tech-icon:nth-child(4) { animation-delay: calc(var(--orbit-speed) / -11 * 1); }
+  .tech-icon:nth-child(5) { animation-delay: calc(var(--orbit-speed) / -11 * 2); }
+  .tech-icon:nth-child(6) { animation-delay: calc(var(--orbit-speed) / -11 * 3); }
+  .tech-icon:nth-child(7) { animation-delay: calc(var(--orbit-speed) / -11 * 4); }
+  .tech-icon:nth-child(8) { animation-delay: calc(var(--orbit-speed) / -11 * 5); }
+  .tech-icon:nth-child(9) { animation-delay: calc(var(--orbit-speed) / -11 * 6); }
+  .tech-icon:nth-child(10) { animation-delay: calc(var(--orbit-speed) / -11 * 7); }
+  .tech-icon:nth-child(11) { animation-delay: calc(var(--orbit-speed) / -11 * 8); }
+  .tech-icon:nth-child(12) { animation-delay: calc(var(--orbit-speed) / -11 * 9); }
+  .tech-icon:nth-child(13) { animation-delay: calc(var(--orbit-speed) / -11 * 10); }
+
+</style>
+</head>
+<body>
+
+<div class="main-container">
+  <div class="orbit-line"></div>
+  
+  <div class="center-card">
+    <h3 style="margin-bottom: 5px;">My Stack</h3>
+    <p style="font-size: 12px; opacity: 0.7;">Full-Stack Developer</p>
+  </div>
+
+  <div class="tech-icon"><i class="devicon-html5-plain colored"></i></div>
+  <div class="tech-icon"><i class="devicon-css3-plain colored"></i></div>
+  <div class="tech-icon"><i class="devicon-javascript-plain colored"></i></div>
+  <div class="tech-icon"><i class="devicon-react-original colored"></i></div>
+  <div class="tech-icon"><i class="devicon-nextjs-original-wordmark"></i></div>
+  <div class="tech-icon"><i class="devicon-git-plain colored"></i></div>
+  <div class="tech-icon"><i class="devicon-github-original"></i></div>
+  <div class="tech-icon"><i class="devicon-wordpress-plain colored"></i></div>
+  <div class="tech-icon"><i class="devicon-php-plain colored"></i></div>
+  <div class="tech-icon"><i class="devicon-elementor-plain colored"></i></div>
+  <div class="tech-icon" title="ACF"><i class="devicon-embeddedc-plain colored"></i></div>
+</div>
+
+</body>
+</html>

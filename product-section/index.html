@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daraz Style Product Grid</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', 'Segoe UI', sans-serif; }
+        body { background-color: #eff0f5; padding: 20px; }
+        
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header-title { font-size: 22px; font-weight: 500; margin-bottom: 15px; color: #424242; }
+
+        /* Grid Layout */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        /* Product Card Style */
+        .product-card {
+            background: #fff;
+            border-radius: 2px;
+            padding: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .product-card:hover { 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15); 
+            transform: translateY(-2px);
+        }
+
+        /* Badges */
+        .discount-badge {
+            position: absolute;
+            top: 0; right: 0;
+            background: #ff6015;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            z-index: 10;
+        }
+
+        /* Image Section */
+        .img-container {
+            width: 100%;
+            height: 188px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content Section */
+        .product-info { padding: 10px; }
+        .product-title {
+            font-size: 14px;
+            color: #212121;
+            line-height: 18px;
+            height: 36px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 8px;
+        }
+        .price-row { margin-bottom: 4px; }
+        .current-price { color: #f85606; font-size: 18px; }
+        .old-price-row { font-size: 12px; color: #9e9e9e; }
+        .old-price { text-decoration: line-through; margin-right: 4px; }
+
+        .rating { color: #eff0f5; font-size: 12px; margin-top: 8px; }
+        .star-filled { color: #ffc107; }
+        .rating-count { color: #9e9e9e; margin-left: 4px; }
+
+        /* Button */
+        .load-more-container { text-align: center; margin-top: 30px; }
+        .load-more-btn {
+            padding: 10px 100px;
+            border: 1px solid #1a9cb7;
+            color: #1a9cb7;
+            background: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 850px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="header-title">Just For You</h2>
+    
+    <div class="product-grid" id="grid">
+        </div>
+
+    <div class="load-more-container">
+        <button class="load-more-btn">Load More</button>
+    </div>
+</div>
+
+<script>
+    const products = [
+        { title: "Omron Digital Thermometer MC-246", price: "650", old: "705", disc: "8%", count: "1", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&h=300&fit=crop" },
+        { title: "Omron NE-C28 Compressor Nebulizer", price: "4,890", old: "6,304", disc: "22%", count: "0", img: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=300&h=300&fit=crop" },
+        { title: "QCY HT05 MeloBuds ANC TWS Earbuds", price: "2,249", old: "2,600", disc: "14%", count: "17", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300&h=300&fit=crop" },
+        { title: "COLMI P71 Bluetooth Calling Smart Watch", price: "1,596", old: "2,200", disc: "27%", count: "97", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop" },
+        { title: "ICE Prime Premium ENC TWS Earbuds", price: "1,892", old: "2,599", disc: "27%", count: "22", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop" },
+        { title: "Haylou Solar Neo BT Calling Smartwatch", price: "2,850", old: "3,499", disc: "19%", count: "13", img: "https://images.unsplash.com/photo-1546868871-70c12246958b?w=300&h=300&fit=crop" },
+        { title: "Haylou Mori Pro 43dB ANC with Ultra-low", price: "1,829", old: "2,499", disc: "27%", count: "2", img: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=300&h=300&fit=crop" },
+        { title: "Xiaomi Type-C Earphone (BHR8926CN)", price: "520", old: "990", disc: "47%", count: "5", img: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?w=300&h=300&fit=crop" },
+        { title: "CMF By Nothing Neckband Pro", price: "3,295", old: "3,990", disc: "17%", count: "8", img: "https://images.unsplash.com/photo-1545127398-14699f92334b?w=300&h=300&fit=crop" }
+    ];
+
+    const grid = document.getElementById('grid');
+
+    products.forEach(p => {
+        grid.innerHTML += `
+            <div class="product-card">
+                <span class="discount-badge">-${p.disc}</span>
+                <div class="img-container">
+                    <img src="${p.img}" alt="Product" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${p.title}</h3>
+                    <div class="price-row">
+                        <span class="current-price">৳${p.price}</span>
+                    </div>
+                    <div class="old-price-row">
+                        <span class="old-price">৳${p.old}</span>
+                        <span class="discount-text">-${p.disc}</span>
+                    </div>
+                    <div class="rating">
+                        <span class="star-filled">★★★★★</span>
+                        <span class="rating-count">(${p.count})</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+</script>
+
+</body>
+</html>

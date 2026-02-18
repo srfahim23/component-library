@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KROK Tech Stack</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080808;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
+
+/* Header & Nav */
+header {
+    padding: 20px 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    font-family: 'Orbitron', sans-serif;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    color: #4ade80;
+    border-bottom: 2px solid #4ade80;
+}
+
+.contact-btn {
+    background-color: #4ade80;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Section Title */
+.tech-section {
+    padding: 80px 20px;
+}
+
+.section-title {
+    color: #4ade80;
+    font-size: 14px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.line {
+    width: 30px;
+    height: 1px;
+    background-color: #4ade80;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+}
+
+/* Grid Design */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.tech-card {
+    background: #000;
+    padding: 30px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+    border: 1px solid #111;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    border-color: #4ade80;
+}
+
+.tech-card img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.tech-card span {
+    font-size: 12px;
+    color: #ddd;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Specific styling for the 'Cadence' text-only logo */
+.cadence-placeholder {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    border: 1px solid white;
+    padding: 2px 5px;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">K <span>KROK</span></div>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+            <button class="contact-btn">Contact Us</button>
+        </nav>
+    </header>
+
+    <section class="tech-section">
+        <div class="section-title">
+            <span class="line"></span> Technologies <span class="line"></span>
+        </div>
+        <h1>Our Tech Stack</h1>
+        <p>We use cutting-edge technologies to build robust and scalable blockchain solutions</p>
+
+        <div class="grid-container">
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="Solana"><span>Solana</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin"><span>Bitcoin</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/flow-flow-logo.png" alt="Flow"><span>Flow</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum"><span>Ethereum</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/cosmos-atom-logo.png" alt="Cosmos"><span>Cosmos</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/multiversx-egld-egld-logo.png" alt="MultiversX"><span>MultiversX</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/ordinals-ordi-logo.png" alt="Ordinals"><span>Ordinals</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/lightning-network-ln-logo.png" alt="Lightning"><span>Lightning</span></div>
+            
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/solidity-solid-logo.png" alt="Solidity"><span>Solidity</span></div>
+            <div class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg" alt="Rust"><span>Rust</span></div>
+            <div class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg" alt="Golang"><span>Golang</span></div>
+            <div class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++"><span>C++</span></div>
+            <div class="tech-card"><div class="cadence-placeholder">Cadence</div><span>Cadence</span></div>
+            <div class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React"><span>React</span></div>
+            <div class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" alt="Angular"><span>Angular</span></div>
+            <div class="tech-card"><img src="https://cryptologos.cc/logos/ledger-short-logo.png" alt="Ledger"><span>Ledger</span></div>
+        </div>
+    </section>
+
+
+    <script>
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWOVO - Custom Web Development</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="https://via.placeholder.com/120x30?text=SWOVO" alt="Logo"> </div>
+        <nav class="nav-links">
+            <a href="#">WHAT WE DO ▾</a>
+            <a href="#">WORK</a>
+            <a href="#">ABOUT</a>
+            <a href="#">PRODUCTS ▾</a>
+            <a href="#">RESOURCES ▾</a>
+        </nav>
+        <div class="header-cta">
+            <a href="#" class="contact-btn">CONTACT</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="hero-text">
+                <p class="tagline">CUSTOM WEB DEVELOPMENT SERVICES</p>
+                <h1>Award-winning web apps that drive results.</h1>
+                <p class="description">We provide top-rated web app development and design services.</p>
+            </div>
+
+            <div class="form-container">
+                <h2>Request a Free Estimate</h2>
+                <p>Fill out the form below to schedule a call.</p>
+                <form id="estimateForm">
+                    <div class="input-field">
+                        <label>Your Name*</label>
+                        <input type="text" placeholder="Full name" required>
+                        <span class="error-msg">Name is required</span>
+                    </div>
+                    <div class="input-field">
+                        <label>Work Email*</label>
+                        <input type="email" placeholder="example@email.com" required>
+                    </div>
+                    <div class="input-field">
+                        <label>How can we help?</label>
+                        <textarea placeholder="Leave us a message..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">GET STARTED</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

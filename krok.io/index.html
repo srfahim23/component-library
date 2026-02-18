@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+    --primary: #00f5a0;
+    --secondary: #00d9ff;
+    --dark: #050505;
+    --text-muted: #a0a0b0;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+body { background: var(--dark); color: white; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+.hero-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 80px;
+}
+
+/* Elite Glass Navbar */
+.glass-nav {
+    position: fixed;
+    top: 24px;
+    width: 95%;
+    max-width: 1200px;
+    padding: 12px 32px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.4s var(--ease-out);
+}
+
+.logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; cursor: pointer; }
+.logo span { color: var(--primary); transition: 0.3s; }
+.logo:hover span { text-shadow: 0 0 15px var(--primary); }
+
+.menu-items { display: flex; gap: 32px; }
+.nav-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+}
+.nav-link:hover { color: white; }
+.nav-link:after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--primary);
+    transition: 0.3s;
+}
+.nav-link:hover:after { width: 100%; }
+
+.nav-btn {
+    background: white;
+    color: black;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s var(--ease-out);
+}
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,255,255,0.15); }
+
+/* Typography & Hero Container */
+.badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--primary);
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.dot {
+    width: 6px; height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.hero-title {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.text-glow {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(0, 245, 160, 0.2));
+}
+
+.stack-box {
+    border: 1px solid var(--glass-border);
+    padding: 0 24px;
+    background: var(--glass-bg);
+    border-radius: 24px;
+    display: inline-block;
+}
+
+.hero-desc {
+    color: var(--text-muted);
+    font-size: clamp(16px, 2vw, 20px);
+    max-width: 700px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Enhanced CTA */
+.hero-cta { display: flex; gap: 24px; justify-content: center; }
+
+.cta-primary {
+    background: var(--primary);
+    color: #050505;
+    padding: 20px 40px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.4s var(--ease-out);
+}
+.cta-primary svg { transition: 0.3s var(--ease-out); }
+.cta-primary:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 245, 160, 0.25);
+}
+.cta-primary:hover svg { transform: translateX(5px); }
+
+.cta-secondary {
+    color: white;
+    padding: 20px 40px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    transition: 0.3s;
+}
+.cta-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+
+/* Background Engineering */
+.abstract-visual {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.spiral {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, var(--primary), var(--secondary));
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.15;
+    animation: pulse 10s infinite alternate var(--ease-out);
+}
+
+.ambient-light {
+    position: absolute;
+    top: -10%; right: -10%;
+    width: 500px; height: 500px;
+    background: var(--secondary);
+    filter: blur(150px);
+    opacity: 0.1;
+}
+
+@keyframes pulse {
+    from { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+    to { transform: translate(-50%, -50%) scale(1.2); opacity: 0.2; }
+}
+    </style>
+</head>
+<body>
+    
+
+<header class="hero-wrapper">
+    <nav class="glass-nav">
+        <div class="logo">KROK<span>.</span>io</div>
+        <div class="menu-items">
+            <a href="#" class="nav-link">Services</a>
+            <a href="#" class="nav-link">Projects</a>
+            <a href="#" class="nav-link">Process</a>
+        </div>
+        <button class="nav-btn">Estimate Project</button>
+    </nav>
+
+    <div class="hero-container">
+        <div class="badge">
+            <span class="dot"></span> Next-Gen Blockchain Solutions
+        </div>
+        
+        <h1 class="hero-title">
+            Build Your <span class="text-glow">Digital Legacy</span> 
+            <br>With Modern <span class="stack-box">Tech Stack</span>
+        </h1>
+
+        <p class="hero-desc">
+            We don't just write code; we transform your vision into a global brand. 
+            High-impact solutions engineered with strategic marketing and cutting-edge technology.
+        </p>
+
+        <div class="hero-cta">
+            <a href="#" class="cta-primary">
+                Book a Strategy Call
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#" class="cta-secondary">View Portfolio</a>
+        </div>
+    </div>
+
+    <div class="abstract-visual">
+        <div class="spiral"></div>
+        <div class="ambient-light"></div>
+    </div>
+</header>
+
+</body>
+</html>

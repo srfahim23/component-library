@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+  <style>
+    /* ট্যাব এরিয়া */
+.portfolio-tabs {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.tab-pill {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    padding: 8px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    padding: 12px 25px;
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.filter-btn.active {
+    background: #6366f1; /* Your Indigo */
+    color: white;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+.filter-btn:hover:not(.active) {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* গ্রিড অ্যানিমেশন এর জন্য */
+.project-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card.hide {
+    transform: scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute; /* যাতে জায়গা খালি না থাকে */
+}
+  </style>
+</head>
+<body>
+    
+
+ <section id="portfolio" class="elite-portfolio">
+    <div class="container">
+        <div class="portfolio-header">
+            <span class="pill-badge">PORTFOLIO</span>
+            <h2>Selected <span>Works.</span></h2>
+        </div>
+
+        <div class="portfolio-tabs">
+            <div class="tab-pill">
+                <button class="filter-btn active" data-filter="all">ALL WORKS</button>
+                <button class="filter-btn" data-filter="design">DESIGN</button>
+                <button class="filter-btn" data-filter="dev">DEVELOPMENT</button>
+                <button class="filter-btn" data-filter="branding">BRANDING</button>
+            </div>
+        </div>
+
+        <div class="project-grid">
+            <div class="project-card" data-category="design">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000" alt="Work">
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <span>UI/UX DESIGN</span>
+                            <h4>Modern Fintech App</h4>
+                            <a href="#" class="view-btn">VIEW CASE STUDY</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="dev">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000" alt="Work">
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <span>DEVELOPMENT</span>
+                            <h4>SaaS Dashboard</h4>
+                            <a href="#" class="view-btn">VIEW TECH</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="branding">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000" alt="Work">
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <span>BRANDING</span>
+                            <h4>Crypto Logo Identity</h4>
+                            <a href="#" class="view-btn">VIEW WORK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        // রিমুভ এক্টিভ ক্লাস
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+        const cards = document.querySelectorAll('.project-card');
+
+        cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            
+            if (filter === 'all' || category === filter) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 500);
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

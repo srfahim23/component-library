@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shabip Stack | Modern Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+    --primary: #ff7f27;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light);
+    margin: 0;
+}
+
+.projects-area {
+    padding: 100px 5%;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 3rem;
+    color: var(--dark);
+    margin-bottom: 40px;
+}
+
+.main-title span {
+    color: var(--primary);
+}
+
+/* Tabs Styling */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 12px 30px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 10px 20px rgba(255, 127, 39, 0.3);
+}
+
+/* Grid & Cards */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.project-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    border: 1px solid #f1f5f9;
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+}
+
+.img-box {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.project-card:hover .img-box img {
+    transform: scale(1.1);
+}
+
+.info-box {
+    padding: 25px;
+    text-align: left;
+}
+
+.badge {
+    background: rgba(255, 127, 39, 0.1);
+    color: var(--primary);
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.info-box h3 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--dark);
+}
+
+/* Explore More Button */
+.load-more-container {
+    margin-top: 60px;
+}
+
+.explore-btn {
+    padding: 16px 45px;
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.explore-btn:hover {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 12px 24px rgba(255, 127, 39, 0.3);
+}
+
+.hidden { display: none; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+    </style>
+</head>
+<body>
+
+<section class="projects-area">
+    <div class="container">
+        <h1 class="main-title">Case Studies & <span>Projects</span></h1>
+
+        <div class="tab-container">
+            <button id="default-tab" class="tab-btn active" onclick="filterProjects('all', this)">All Works</button>
+            <button class="tab-btn" onclick="filterProjects('website', this)">Websites</button>
+            <button class="tab-btn" onclick="filterProjects('application', this)">Applications</button>
+            <button class="tab-btn" onclick="filterProjects('software', this)">Softwares</button>
+        </div>
+
+        <div id="project-grid" class="project-grid">
+            </div>
+
+        <div class="load-more-container">
+            <button id="load-more-btn" class="explore-btn" onclick="showAllProjects()">Explore More</button>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+
+<script>
+// আপনার ২০টি প্রজেক্ট ডাটা
+const projects = [
+    { title: "Spokane Adult Homes", cat: "website", tag: "Properties", img: "https://picsum.photos/400/300?random=1", url: "#" },
+    { title: "Rebooster Marketplace", cat: "website", tag: "eCommerce", img: "https://picsum.photos/400/300?random=2", url: "#" },
+    { title: "Construction Pro", cat: "website", tag: "Industrial", img: "https://picsum.photos/400/300?random=3", url: "#" },
+    { title: "Crypto Tracker", cat: "website", tag: "Blockchain", img: "https://picsum.photos/400/300?random=4", url: "#" },
+    { title: "BB Blog Portal", cat: "website", tag: "Media", img: "https://picsum.photos/400/300?random=5", url: "#" },
+    { title: "Luxury Hotel Site", cat: "website", tag: "Travel", img: "https://picsum.photos/400/300?random=6", url: "#" },
+    // বাকি প্রজেক্টগুলো এখানে... (মোট ২০টি)
+    { title: "Sklepigo App", cat: "application", tag: "Retail", img: "https://picsum.photos/400/300?random=7", url: "#" },
+    { title: "Premium Food Delivery", cat: "application", tag: "Fitness", img: "https://picsum.photos/400/300?random=8", url: "#" },
+    { title: "Ticketly Pro", cat: "application", tag: "Events", img: "https://picsum.photos/400/300?random=9", url: "#" },
+    { title: "Health Buddy", cat: "application", tag: "Medical", img: "https://picsum.photos/400/300?random=10", url: "#" },
+    { title: "Task Manager", cat: "application", tag: "Productivity", img: "https://picsum.photos/400/300?random=11", url: "#" },
+    { title: "Social Connect", cat: "application", tag: "Social", img: "https://picsum.photos/400/300?random=12", url: "#" },
+    { title: "FileStreamr Cloud", cat: "software", tag: "SaaS", img: "https://picsum.photos/400/300?random=13", url: "#" },
+    { title: "SpendWish CRM", cat: "software", tag: "Fintech", img: "https://picsum.photos/400/300?random=14", url: "#" },
+    { title: "FleetEye Logistics", cat: "software", tag: "Tracking", img: "https://picsum.photos/400/300?random=15", url: "#" },
+    { title: "Secure Guard AI", cat: "software", tag: "Security", img: "https://picsum.photos/400/300?random=16", url: "#" },
+    { title: "ERP Business Solution", cat: "software", tag: "Enterprise", img: "https://picsum.photos/400/300?random=17", url: "#" },
+    { title: "AI Stock Bot", cat: "software", tag: "Automation", img: "https://picsum.photos/400/300?random=18", url: "#" },
+    { title: "Inventory Master", cat: "software", tag: "Management", img: "https://picsum.photos/400/300?random=19", url: "#" },
+    { title: "Portfolio Pro", cat: "website", tag: "Personal", img: "https://picsum.photos/400/300?random=20", url: "#" }
+];
+
+let currentFilter = 'all';
+const initialLimit = 6;
+let isFullLoaded = false;
+
+function filterProjects(category, btnElement) {
+    currentFilter = category;
+    isFullLoaded = false; // নতুন ক্যাটাগরি সিলেক্ট করলে আবার লিমিট সেট হবে
+    
+    // Tab active color fix
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    if(btnElement) btnElement.classList.add('active');
+
+    // ক্যাটাগরি চেঞ্জ করলে গ্রিড খালি করে প্রথম ৬টি দেখাবে
+    const grid = document.getElementById('project-grid');
+    grid.innerHTML = ''; 
+    
+    const filteredData = category === 'all' ? projects : projects.filter(p => p.cat === category);
+    const dataToShow = filteredData.slice(0, initialLimit);
+    
+    appendCards(dataToShow);
+    toggleButton(filteredData.length);
+}
+
+function showAllProjects() {
+    const grid = document.getElementById('project-grid');
+    const filteredData = currentFilter === 'all' ? projects : projects.filter(p => p.cat === currentFilter);
+    
+    // শুধু বাকি প্রজেক্টগুলো (৭ নম্বর থেকে শেষ পর্যন্ত) বের করা
+    const remainingData = filteredData.slice(initialLimit);
+    
+    appendCards(remainingData);
+    isFullLoaded = true;
+    toggleButton(filteredData.length);
+}
+
+function appendCards(dataList) {
+    const grid = document.getElementById('project-grid');
+    const htmlString = dataList.map(p => `
+        <a href="${p.url}" target="_blank" class="project-link">
+            <div class="project-card">
+                <div class="img-box">
+                    <img src="${p.img}" alt="${p.title}">
+                </div>
+                <div class="info-box">
+                    <span class="badge">${p.tag}</span>
+                    <h3>${p.title}</h3>
+                </div>
+            </div>
+        </a>
+    `).join('');
+    
+    // এটি আগের কার্ডগুলো রেখে নতুনগুলো শেষে যোগ করবে
+    grid.insertAdjacentHTML('beforeend', htmlString);
+}
+
+function toggleButton(totalCount) {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (isFullLoaded || totalCount <= initialLimit) {
+        loadMoreBtn.classList.add('hidden');
+    } else {
+        loadMoreBtn.classList.remove('hidden');
+    }
+}
+
+// Default Load
+window.onload = () => {
+    filterProjects('all', document.getElementById('default-tab'));
+};
+</script>
+</body>
+</html>
